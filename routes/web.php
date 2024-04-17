@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('warga')->group(function () {
+    Route::get('/', [WargaController::class, 'index'])->name('warga.index');
+    Route::get('/create', [WargaController::class, 'create'])->name('warga.create');
+    Route::post('/store', [WargaController::class, 'store'])->name('warga.store');
+    Route::get('/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
+    Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
+    Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('warga.destroy');
 });
