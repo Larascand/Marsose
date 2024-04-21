@@ -12,7 +12,11 @@
             <th>Nama</th>
             <th>Alamat</th>
             <th>Jenis Kelamin</th>
-            <!-- tambahkan kolom lain yang Anda inginkan -->
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Agama</th>
+            <th>Telepon</th>
+            <th>No. KK</th>
             <th>Action</th>
         </tr>
         @foreach ($warga as $warga)
@@ -21,6 +25,11 @@
             <td>{{ $warga->nama }}</td>
             <td>{{ $warga->alamat }}</td>
             <td>{{ $warga->jenis_kelamin }}</td>
+            <td>{{ $warga->tempat_lahir }}</td>
+            <td>{{ $warga->tanggal_lahir }}</td>
+            <td>{{ $warga->agama }}</td>
+            <td>{{ $warga->no_telp }}</td>
+            <td>{{ $warga->No_KK }}</td>
             <td>
                 <a href="{{ route('warga.edit', $warga->NIK) }}">Edit</a>
                 <form action="{{ route('warga.destroy', $warga->NIK) }}" method="POST">
