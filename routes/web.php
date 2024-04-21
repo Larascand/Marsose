@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RWController;
+use App\Http\Controllers\RTController;
+
 
 
 /*
@@ -28,6 +30,15 @@ Route::prefix('rw')->group(function () {
     Route::put('/update/{No_RW}', [RwController::class, 'update'])->name('data_rw.update');
     Route::delete('/destroy/{No_RW}', [RwController::class, 'destroy'])->name('data_rw.destroy');
 });
+Route::prefix('rt')->group(function () {
+    Route::get('/', [RTController::class, 'index'])->name('data_rt.index');
+    Route::get('/create', [RTController::class, 'create'])->name('data_rt.create');
+    Route::post('/store', [RTController::class, 'store'])->name('data_rt.store');
+    Route::get('/edit/{No_RT}', [RTController::class, 'edit'])->name('data_rt.edit');
+    Route::put('/update/{No_RT}', [RTController::class, 'update'])->name('data_rt.update');
+    Route::delete('/destroy/{No_RT}', [RTController::class, 'destroy'])->name('data_rt.destroy');
+});
+
 
 Route::prefix('warga')->group(function () {
     Route::get('/', [WargaController::class, 'index'])->name('warga.index');
