@@ -21,7 +21,7 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NIK' => 'required|unique:wargas',
+            'NIK' => 'required|unique:warga',
             'username' => 'required',
             'password' => 'required',
             'nama' => 'required',
@@ -38,20 +38,18 @@ class WargaController extends Controller
         return redirect()->route('warga.index')->with('success', 'Warga berhasil ditambahkan');
     }
 
-    public function edit($id)
+    public function edit($NIK)
     {
-        $warga = Warga::findOrFail($id);
+        $warga = Warga::findOrFail($NIK);
         return view('warga.edit', compact('warga'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $NIK)
     {
-        $warga = Warga::findOrFail($id);
+        $warga = Warga::findOrFail($NIK);
 
         $request->validate([
-            'NIK' => 'required|unique:warga,NIK,' . $id,
             'username' => 'required',
-            'password' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
@@ -66,9 +64,9 @@ class WargaController extends Controller
         return redirect()->route('warga.index')->with('success', 'Warga berhasil diperbarui');
     }
 
-    public function destroy($id)
+    public function destroy($NIK)
     {
-        $warga = Warga::findOrFail($id);
+        $warga = Warga::findOrFail($NIK);
         $warga->delete();
         return redirect()->route('warga.index')->with('success', 'Warga berhasil dihapus');
     }

@@ -21,10 +21,9 @@
             <td>{{ $warga->nama }}</td>
             <td>{{ $warga->alamat }}</td>
             <td>{{ $warga->jenis_kelamin }}</td>
-            <!-- tambahkan kolom lain yang Anda inginkan -->
             <td>
-                <a href="{{ route('warga.edit', $warga->id) }}">Edit</a>
-                <form action="{{ route('warga.destroy', $warga->id) }}" method="POST">
+                <a href="{{ route('warga.edit', $warga->NIK) }}">Edit</a>
+                <form action="{{ route('warga.destroy', $warga->NIK) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus warga ini?')">Delete</button>
