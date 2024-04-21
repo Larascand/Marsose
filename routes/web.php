@@ -5,6 +5,8 @@ use App\Http\Controllers\WargaController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\KKController;
+use App\Http\Controllers\LaporanPengaduanController;
+
 
 
 
@@ -48,8 +50,14 @@ Route::prefix('kk')->group(function () {
     Route::put('/update/{No_KK}', [KKController::class, 'update'])->name('data_kk.update');
     Route::delete('/destroy/{No_KK}', [KKController::class, 'destroy'])->name('data_kk.destroy');
 });
-
-
+Route::prefix('laporan-pengaduan')->group(function () {
+    Route::get('/', [LaporanPengaduanController::class, 'index'])->name('laporan_pengaduan.index');
+    Route::get('/create', [LaporanPengaduanController::class, 'create'])->name('laporan_pengaduan.create');
+    Route::post('/store', [LaporanPengaduanController::class, 'store'])->name('laporan_pengaduan.store');
+    Route::get('/edit/{ID_Laporan}', [LaporanPengaduanController::class, 'edit'])->name('laporan_pengaduan.edit');
+    Route::put('/update/{ID_Laporan}', [LaporanPengaduanController::class, 'update'])->name('laporan_pengaduan.update');
+    Route::delete('/destroy/{ID_Laporan}', [LaporanPengaduanController::class, 'destroy'])->name('laporan_pengaduan.destroy');
+});
 Route::prefix('warga')->group(function () {
     Route::get('/', [WargaController::class, 'index'])->name('warga.index');
     Route::get('/create', [WargaController::class, 'create'])->name('warga.create');
