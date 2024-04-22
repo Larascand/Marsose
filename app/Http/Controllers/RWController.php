@@ -9,8 +9,18 @@ class RWController extends Controller
 {
     public function index()
     {
-        $dataRw = RW::all();
-        return view('data_rw.index', compact('dataRw'));
+        $breadcrumb = (object) [
+            'title' => 'Home',
+            'list' => ['Data RW']
+        ];
+
+        $activeMenu = 'datarw';
+        $dataRt = RW::all();
+
+        return view('data_rw.index', [
+            'breadcrumb' => $breadcrumb,
+            'activeMenu' => $activeMenu
+        ]);
     }
     
 

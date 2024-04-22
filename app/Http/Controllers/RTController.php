@@ -11,8 +11,19 @@ class RTController extends Controller
 {
     public function index()
     {
+        $breadcrumb = (object) [
+            'title' => 'Home',
+            'list' => ['Data RT']
+        ];
+
+        $activeMenu = 'datart';
         $dataRt = RT::all();
-        return view('data_rt.index', compact('dataRt'));
+
+        return view('data_rt.index', [
+            'breadcrumb' => $breadcrumb,
+            'datart' => $dataRt,
+            'activeMenu' => $activeMenu
+        ]);
     }
 
     public function create()
