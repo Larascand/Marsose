@@ -36,9 +36,6 @@
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
 			<!--begin::Page-->
 			<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-				<!--begin::Header-->
-					@include('layouts.header')
-				<!--end::Header-->
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					<!--begin::Sidebar-->
@@ -51,6 +48,9 @@
 					<!--end:::Main-->
 				</div>
 				<!--end::Wrapper-->
+				<!--begin::Header-->
+					@include('layouts.header')
+				<!--end::Header-->
 			</div>
 			<!--end::Page-->
 		</div>
