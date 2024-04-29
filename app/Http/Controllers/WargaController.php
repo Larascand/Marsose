@@ -9,8 +9,19 @@ class WargaController extends Controller
 {
     public function index()
     {
+        $breadcrumb = (object) [
+            'title' => 'Penduduk',
+            'list' => ['Data Penduduk']
+        ];
+
+        $activeMenu = 'warga';
         $warga = Warga::all();
-        return view('warga.index', compact('warga'));
+
+        return view('warga.index', [
+            'breadcrumb' => $breadcrumb,
+            'warga' => $warga,
+            'activeMenu' => $activeMenu
+        ]);
     }
 
     public function create()

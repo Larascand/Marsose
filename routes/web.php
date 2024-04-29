@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LaporanPengaduanController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,24 @@ Route::prefix('warga')->group(function () {
     Route::get('/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
     Route::put('/update/{id}', [WargaController::class, 'update'])->name('warga.update');
     Route::delete('/destroy/{id}', [WargaController::class, 'destroy'])->name('warga.destroy');
+});
+
+Route::prefix('laporan')->group(function () {
+    Route::get('/', [LaporanPengaduanController::class, 'index'])->name('laporan.index');
+    Route::get('/create', [LaporanPengaduanController::class, 'create'])->name('laporan.create');
+    Route::post('/store', [LaporanPengaduanController::class, 'store'])->name('laporan.store');
+    Route::get('/edit/{id}', [LaporanPengaduanController::class, 'edit'])->name('laporan.edit');
+    Route::put('/update/{id}', [LaporanPengaduanController::class, 'update'])->name('laporan.update');
+    Route::delete('/destroy/{id}', [LaporanPengaduanController::class, 'destroy'])->name('laporan.destroy');
+});
+
+Route::prefix('rw')->group(function () {
+    Route::get('/', [RTController::class, 'index'])->name('data_rw.index');
+    Route::get('/create', [RTController::class, 'create'])->name('data_rw.create');
+    Route::post('/store', [RTController::class, 'store'])->name('data_rw.store');
+    Route::get('/edit/{No_RT}', [RTController::class, 'edit'])->name('data_rw.edit');
+    Route::put('/update/{No_RT}', [RTController::class, 'update'])->name('data_rw.update');
+    Route::delete('/destroy/{No_RT}', [RTController::class, 'destroy'])->name('data_rw.destroy');
 });
 
 Route::prefix('rt')->group(function () {

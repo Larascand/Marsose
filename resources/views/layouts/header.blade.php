@@ -1,14 +1,14 @@
 <div id="kt_app_header" class="app-header d-flex flex-column flex-stack">
     <!--begin::Header main-->
     <div class="d-flex flex-stack flex-grow-1">
-
-        <!--begin::Navbar-->
-        <div class="app-navbar">
+        <div class="app-header-logo d-flex align-items-center ps-lg-12" id="kt_app_header_logo">
+            <!--begin::Sidebar mobile toggle-->
             <div class="btn btn-icon btn-active-color-primary w-35px h-35px ms-3 me-2 d-flex d-lg-none" id="kt_app_sidebar_mobile_toggle">
                 <i class="ki-outline ki-abstract-14 fs-2"></i>
             </div>
+            <!--end::Sidebar mobile toggle-->
         </div>
-
+        <!--begin::Navbar-->
         <div class="app-navbar flex-grow-1 justify-content-end" id="kt_app_header_navbar">
             <!--begin::Notifications-->
             <div class="app-navbar-item ms-2 ms-lg-6">

@@ -11,8 +11,19 @@ class LaporanPengaduanController extends Controller
 {
     public function index()
     {
-        $laporanPengaduan = LaporanPengaduan::all();
-        return view('laporan_pengaduan.index', compact('laporanPengaduan'));
+        $breadcrumb = (object) [
+            'title' => 'Laporan',
+            'list' => ['Laporan Pengaduan']
+        ];
+
+        $activeMenu = 'laporan';
+        $laporanP = LaporanPengaduan::all();
+
+        return view('laporan_pengaduan.index', [
+            'breadcrumb' => $breadcrumb,
+            'laporanP' => $laporanP,
+            'activeMenu' => $activeMenu
+        ]);
     }
 
     public function create()

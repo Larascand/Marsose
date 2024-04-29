@@ -33,7 +33,7 @@
             <!-- Begin: Menu item -->
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/') }}">
+                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/laporan') }}">
                     <span class="menu-icon">
                         @if ($activeMenu == 'laporan')
                             <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
@@ -48,85 +48,19 @@
             <!-- End: Menu item -->
 
             <!-- Begin: Menu item -->
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+            <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <span class="menu-link">
+                <a class="menu-link {{ $activeMenu == 'warga' ? 'active' : '' }}" href="{{ url('/warga') }}">
                     <span class="menu-icon">
-                        <img alt="Logo" src="assets/media/logos/logo-penduduk.svg" class="h-25px theme-light-show" />
+                        @if ($activeMenu == 'warga')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-warga.svg" class="h-25px theme-light-show" />
+                        @else
+                            <img alt="Logo" src="assets/media/logos/menu/logo-warga.svg" class="h-25px theme-light-show" />
+                        @endif
                     </span>
                     <span class="menu-title">Data Penduduk</span>
-                    <span class="menu-arrow"></span>
-                </span>
+                </a>
                 <!-- End: Menu link -->
-
-                <!-- Begin: Menu sub -->
-                <div class="menu-sub menu-sub-accordion">
-                    <!-- Begin: Menu item -->
-                    <div class="menu-item">
-                        <!-- Begin: Menu link -->
-                        <a class="menu-link" href="../../demo39/dist/index.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">RT 1</span>
-                        </a>
-                        <!-- End: Menu link -->
-                    </div>
-                    <!-- End: Menu item -->
-
-                    <!-- Begin: Menu item -->
-                    <div class="menu-item">
-                        <!-- Begin: Menu link -->
-                        <a class="menu-link" href="../../demo39/dist/index.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">RT 2</span>
-                        </a>
-                        <!-- End: Menu link -->
-                    </div>
-                    <!-- End: Menu item -->
-
-                    <!-- Begin: Menu item -->
-                    <div class="menu-item">
-                        <!-- Begin: Menu link -->
-                        <a class="menu-link" href="../../demo39/dist/index.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">RT 3</span>
-                        </a>
-                        <!-- End: Menu link -->
-                    </div>
-                    <!-- End: Menu item -->
-
-                    <!-- Begin: Menu item -->
-                    <div class="menu-item">
-                        <!-- Begin: Menu link -->
-                        <a class="menu-link" href="../../demo39/dist/index.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">RT 4</span>
-                        </a>
-                        <!-- End: Menu link -->
-                    </div>
-                    <!-- End: Menu item -->
-
-                    <!-- Begin: Menu item -->
-                    <div class="menu-item">
-                        <!-- Begin: Menu link -->
-                        <a class="menu-link" href="../../demo39/dist/index.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">RT 5</span>
-                        </a>
-                        <!-- End: Menu link -->
-                    </div>
-                    <!-- End: Menu item -->
-                </div>
-                <!-- End: Menu sub -->
             </div>
             <!-- End: Menu item -->
 
