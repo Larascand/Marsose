@@ -12,17 +12,21 @@ class KKController extends Controller
 {
     public function index()
     {
+        $breadcrumb = (object) [
+            'title' => 'Home',
+            'list' => ['DataKK']
+        ];
+
+        $activeMenu = 'datakk';
         $dataKK = KK::all();
-        return view('data_kk.index', compact('dataKK'));
-    }
 
-    public function create()
-    {
-        $dataRW = RW::all();
-        $dataRT = RT::all();
-        return view('data_kk.create', compact('dataRW', 'dataRT'));
+        return view('data_kk.index', [
+            'breadcrumb' => $breadcrumb,
+            'datart' => $dataKK,
+            'activeMenu' => $activeMenu
+        ]);
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([

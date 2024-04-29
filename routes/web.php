@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LaporanPengaduanController;
 use App\Http\Controllers\RTController;
+use App\Http\Controllers\KKController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
@@ -60,4 +61,13 @@ Route::prefix('rt')->group(function () {
     Route::get('/edit/{No_RT}', [RTController::class, 'edit'])->name('data_rt.edit');
     Route::put('/update/{No_RT}', [RTController::class, 'update'])->name('data_rt.update');
     Route::delete('/destroy/{No_RT}', [RTController::class, 'destroy'])->name('data_rt.destroy');
+});
+
+Route::prefix('kk')->group(function () {
+    Route::get('/', [KKController::class, 'index'])->name('data_kk.index');
+    Route::get('/create', [KKController::class, 'create'])->name('data_kk.create');
+    Route::post('/store', [KKController::class, 'store'])->name('data_kk.store');
+    Route::get('/edit/{No_RT}', [KKController::class, 'edit'])->name('data_kk.edit');
+    Route::put('/update/{No_RT}', [KKController::class, 'update'])->name('data_kk.update');
+    Route::delete('/destroy/{No_RT}', [KKController::class, 'destroy'])->name('data_kk.destroy');
 });
