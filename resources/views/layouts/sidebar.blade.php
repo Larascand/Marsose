@@ -33,15 +33,15 @@
             <!-- Begin: Menu item -->
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/laporan') }}">
+                <a class="menu-link {{ $activeMenu == 'datart' ? 'active' : '' }}" href="{{ url('/rt') }}">
                     <span class="menu-icon">
-                        @if ($activeMenu == 'laporan')
-                            <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
+                        @if ($activeMenu == 'datart')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-datart.svg" class="h-25px theme-light-show" />
                         @else
-                            <img alt="Logo" src="assets/media/logos/menu/logo-laporan.svg" class="h-25px theme-light-show" />
+                            <img alt="Logo" src="assets/media/logos/menu/logo-datart.svg" class="h-25px theme-light-show" />
                         @endif
                     </span>
-                    <span class="menu-title">Laporan</span>
+                    <span class="menu-title">Data RT</span>
                 </a>
                 <!-- End: Menu link -->
             </div>
@@ -67,15 +67,32 @@
             <!-- Begin: Menu item -->
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <a class="menu-link {{ $activeMenu == 'datart' ? 'active' : '' }}" href="{{ url('/rt') }}">
+                <a class="menu-link {{ $activeMenu == 'datakk' ? 'active' : '' }}" href="{{ url('/kk') }}">
                     <span class="menu-icon">
-                        @if ($activeMenu == 'datart')
-                            <img alt="Logo" src="assets/media/logos/menu-active/logo-datart.svg" class="h-25px theme-light-show" />
+                        @if ($activeMenu == 'datakk')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-datakk.svg" class="h-25px theme-light-show" />
                         @else
-                            <img alt="Logo" src="assets/media/logos/menu/logo-datart.svg" class="h-25px theme-light-show" />
+                            <img alt="Logo" src="assets/media/logos/menu/logo-datakk.svg" class="h-25px theme-light-show" />
                         @endif
                     </span>
-                    <span class="menu-title">Data RT</span>
+                    <span class="menu-title">Data KK</span>
+                </a>
+                <!-- End: Menu link -->
+            </div>
+            <!-- End: Menu item -->
+
+            <!-- Begin: Menu item -->
+            <div class="menu-item menu-accordion">
+                <!-- Begin: Menu link -->
+                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/laporan') }}">
+                    <span class="menu-icon">
+                        @if ($activeMenu == 'laporan')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
+                        @else
+                            <img alt="Logo" src="assets/media/logos/menu/logo-laporan.svg" class="h-25px theme-light-show" />
+                        @endif
+                    </span>
+                    <span class="menu-title">Laporan</span>
                 </a>
                 <!-- End: Menu link -->
             </div>
