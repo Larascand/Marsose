@@ -21,12 +21,13 @@ return new class extends Migration
             $table->string('tempat_lahir', 50)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('agama', 20)->nullable();
-            $table->string('no_telp', 20)->nullable();
             $table->string('No_KK', 20)->nullable();
+            $table->unsignedBigInteger('id_level')->index();
             $table->timestamps();
             
             // Menambahkan indeks dan foreign key
             $table->foreign('No_KK')->references('No_KK')->on('kk')->onDelete('cascade');
+            $table->foreign('id_level')->references('id_level')->on('level')->onDelete('cascade');
         });
     }
 

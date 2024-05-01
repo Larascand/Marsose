@@ -20,6 +20,7 @@ return new class extends Migration
         $table->enum('status', ['ditolak', 'diterima', 'selesai'])->nullable();
         $table->unsignedBigInteger('NIK')->nullable();
         $table->string('No_RW', 10)->nullable();
+        $table->timestamps();
 
         $table->foreign('NIK')->references('NIK')->on('warga')->onDelete('set null');
         $table->foreign('No_RW')->references('No_RW')->on('data_rw')->onDelete('set null');

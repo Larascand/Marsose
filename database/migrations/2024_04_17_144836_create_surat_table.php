@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('surat', function (Blueprint $table) {
             $table->bigIncrements('ID_Surat');
+            $table->string('jenis_surat', 100)->nullable();
             $table->string('nama_surat', 100)->nullable();
             $table->string('file_surat', 255)->nullable();
             $table->string('alur_pengurusan', 255)->nullable();
@@ -21,6 +22,7 @@ return new class extends Migration
             
             // Menambahkan indeks dan foreign key
             $table->foreign('No_RW')->references('No_RW')->on('data_rw')->onDelete('cascade');
+            $table->foreign('jenis_surat')->references('jenis_surat')->on('kategori_surat')->onDelete('cascade');
         });
     }
 

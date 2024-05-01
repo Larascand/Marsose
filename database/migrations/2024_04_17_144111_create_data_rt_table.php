@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('alamat', 255)->nullable();
             $table->string('periode_jabatan', 20)->nullable();
             $table->string('No_RW', 10)->nullable();
+            $table->timestamps();
 
             // Menambahkan constraint foreign key
             $table->foreign('No_RW')->references('No_RW')->on('data_rw')->onDelete('set null');

@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_rw', function (Blueprint $table) {
-            $table->string('No_RW', 10)->primary();
-            $table->unsignedBigInteger('NIK')->nullable();
-            $table->string('nama', 50)->nullable();
-            $table->string('alamat', 255)->nullable();
-            $table->string('periode_jabatan', 20)->nullable();
+        Schema::create('level', function (Blueprint $table) {
+            $table->id('id_level');
+            $table->string('kode_level', 10)->unique();
             $table->timestamps();
         });
     }
