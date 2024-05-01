@@ -47,23 +47,14 @@
 									<div class="px-7 py-5" data-kt-user-table-filter="form">
 										<!--begin::Input group-->
 										<div class="mb-10">
-											<label class="form-label fs-6 fw-semibold">Role:</label>
+											<label class="form-label fs-6 fw-semibold">RT:</label>
 											<select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
 												<option></option>
-												<option value="Administrator">Administrator</option>
-												<option value="Analyst">Analyst</option>
-												<option value="Developer">Developer</option>
-												<option value="Support">Support</option>
-												<option value="Trial">Trial</option>
-											</select>
-										</div>
-										<!--end::Input group-->
-										<!--begin::Input group-->
-										<div class="mb-10">
-											<label class="form-label fs-6 fw-semibold">Two Step Verification:</label>
-											<select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="two-step" data-hide-search="true">
-												<option></option>
-												<option value="Enabled">Enabled</option>
+												<option value="RT1">RT 01</option>
+												<option value="RT2">RT 02</option>
+												<option value="RT3">RT 03</option>
+												<option value="RT4">RT 04</option>
+												<option value="RT5">RT 05</option>
 											</select>
 										</div>
 										<!--end::Input group-->
