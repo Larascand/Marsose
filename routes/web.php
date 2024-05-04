@@ -6,6 +6,7 @@ use App\Http\Controllers\KKController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/', [WelcomeController::class, 'index']);
 // Route::get('/', function() {
 //     return view('layouts.template');
 // });
+
+Route::get('/user', [UserController::class, 'index']);
 
 Route::prefix('warga')->group(function () {
     Route::get('/', [WargaController::class, 'index'])->name('warga.index');
