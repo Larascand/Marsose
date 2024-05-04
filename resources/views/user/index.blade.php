@@ -19,16 +19,16 @@
 </div>
 
 <!--begin::List Widget 5-->
-<div class="row g-5 g-xxl-8 mt-5">
+<div class="row g-5 mt-5">
     <div class="col-xl-4">
-        <div class="card mt-5 mb-xxl-8 h-100" style="background-color: #1B283F; background-image: url('assets/media/logos/rhone.svg'); background-repeat: no-repeat; background-size: cover;">
+        <div class="card mt-10 h-100" style="background-color: #1B283F; background-image: url('assets/media/logos/rhone.svg'); background-repeat: no-repeat; background-size: cover;">
             <!--begin::Header-->
             <div class="card-header align-items-center border-0 mt-4">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="fw-bold mb-2 text-light pt-20">Laporkan Keluhan</span>
-                    <span class="text-muted fw-semibold fs-14">Anda dapat melaporkan segala bentuk keluhan anda di lingkungan marsose RW 03</span>
+                    <span class="fw-bold mb-2 text-light pt-10" style="font-size: 24px; padding-bottom: 12px;">Laporkan Keluhan</span>
+                    <span class="text-muted fw-semibold" style="font-size: 16px;">Anda dapat melaporkan segala bentuk keluhan anda di lingkungan marsose RW 03</span>
                 </h3>
-            </div>
+            </div>            
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-5">
@@ -36,11 +36,10 @@
             </div>
             <!--end: Card Body-->
         </div>        
-        <!--end: List Widget 5-->
     </div>    
 
     <div class="col-xl-4">
-        <div class="card mt-5 mb-xxl-8 h-100">
+        <div class="card mt-10 h-100">
             <!--begin::Header-->
             <div class="card-header align-items-center border-0 mt-4">
                 <h3 class="card-title align-items-start flex-column">
@@ -143,48 +142,51 @@
             </div>
             <!--end: Card Body-->
         </div>
-        <!--end: List Widget 5-->
     </div>
 
     <!--begin::List Surat-->
     <div class="col-xl-2">
-        <div class="card mt-5 mb-xxl-4" style="background-color: #1B283F;">
-            {{-- <div class="card-header align-items-center border-0 mt-4">
-                <h3 class="card-title align-items-start flex-column">
-                    <span class="fw-bold mb-2 text-light">Laporkan Keluhan</span>
-                    <span class="text-muted fw-semibold fs-14">Anda dapat melaporkan segala bentuk keluhan anda di lingkungan marsose RW 03</span>
-                </h3>
-            </div> --}}
-            <div class="card-body pt-5">
-                <span class="fw-bold text-white">Surat surat</span>
+        <div class="row">
+            <div class="card mt-10 mb-4">
+                <div class="card-body text-center">
+                    <h3 class="fw-bold mb-4 pt-4" style="color: #181C32;">Surat Surat</h3>
+                    <a href=""><img src="assets/media/icons/icon-surat.svg" alt="Image" class="img-fluid mb-4 pt-lg-20"></a>
+                </div>
+            </div>            
+
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h3 class="fw-bold mb-4 pt-4" style="color: #181C32;">Surat Surat</h3>
+                    <a href=""><img src="assets/media/icons/icon-surat.svg" alt="Image" class="img-fluid mb-4 pt-lg-20"></a>
+                </div>
             </div>
         </div>        
     </div>
 
     <div class="col-xl-2">
-        <div class="card mt-5 mb-xxl-4" style="background-color: #1B283F;">
-            {{-- <div class="card-header align-items-center border-0 mt-4">
-                <h3 class="card-title align-items-start flex-column">
-                    <span class="fw-bold mb-2 text-light">Laporkan Keluhan</span>
-                    <span class="text-muted fw-semibold fs-14">Anda dapat melaporkan segala bentuk keluhan anda di lingkungan marsose RW 03</span>
-                </h3>
-            </div> --}}
-            <div class="card-body pt-5">
-                <span class="fw-bold text-white">Surat surat</span>
+        <div class="row">
+            <div class="card mt-10 mb-4">
+                <div class="card-body text-center">
+                    <h3 class="fw-bold mb-4 pt-4" style="color: #181C32;">Surat Surat</h3>
+                    <a href=""><img src="assets/media/icons/icon-surat.svg" alt="Image" class="img-fluid mb-4 pt-lg-20"></a>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h3 class="fw-bold mb-4 pt-4" style="color: #181C32;">Surat Surat</h3>
+                    <a href=""><img src="assets/media/icons/icon-surat.svg" alt="Image" class="img-fluid mb-4 pt-lg-20"></a>
+                </div>
             </div>
         </div>        
     </div>
 </div>
 
-<div class="justify-content-center flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12 mb-n5 mb-lg-n13 mt-11" style="background-color: #fff;">
+<div class="justify-content-center flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12 mb-n5 mb-lg-n13 mt-18" style="background-color: #fff;">
     <!--begin::Content-->
     <div class="my-2 me-5 text-center">
-        <!--begin::Title-->
         <div class="fs-1 fs-lg-2qx fw-bold mb-2">Data Laporan Warga</div>
-        <!--end::Title-->
-        <!--begin::Description-->
         <div class="fs-6 fs-lg-5 fw-semibold opacity-75">Seluruh Laporan Terbaru</div>
-        <!--end::Description-->
     </div>
     <!--end::Content-->
 
@@ -211,10 +213,8 @@
                 <td>Barang yang dicuri adalah sepeda motor</td>
                 <td>Menunggu Verifikasi</td>
             </tr>
-            <!-- Tambahkan baris data sesuai kebutuhan -->
         </tbody>
     </table>
     <!--end::Table-->    
 </div>
-
 @endsection

@@ -28,7 +28,10 @@ Route::get('/', [WelcomeController::class, 'index']);
 //     return view('layouts.template');
 // });
 
-Route::get('/user', [UserController::class, 'index']);
+Route::prefix('user')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/laporan', [UserController::class, 'laporan'])->name('user.laporan');
+});
 
 Route::prefix('warga')->group(function () {
     Route::get('/', [WargaController::class, 'index'])->name('warga.index');
