@@ -1,5 +1,11 @@
+<style>
+    .menu-link.nav-link:hover {
+        color: #FF520D !important;
+    }
+</style>
+
 <div class="container-fluid">
-<div class="landing-header rounded-4" style="background-color: #1E293B; position: fixed; width: 98.5%; z-index: 1000;">
+    <div class="landing-header rounded-4" style="background-color: #1E293B; position: fixed; width: 98.5%; z-index: 1000;">
         <!--begin::Container-->
         <div class="container">
             <!--begin::Wrapper-->
@@ -26,28 +32,28 @@
                             <!--begin::Menu item-->
                             <div class="menu-item">
                                 <!--begin::Menu link-->
-                                <a class="menu-link nav-link active py-3 px-4 px-xxl-6" href="/user/" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Dashboard</a>
+                                <a class="menu-link nav-link {{ request()->is('user/dashboard') ? 'active' : '' }} py-3 px-4 px-xxl-6" href="/user/dashboard" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Dashboard</a>
                                 <!--end::Menu link-->
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item">
                                 <!--begin::Menu link-->
-                                <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="/user/laporan" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Laporan Warga</a>
+                                <a class="menu-link nav-link {{ request()->is('user/laporan') ? 'active' : '' }} py-3 px-4 px-xxl-6" href="/user/laporan" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Laporan Warga</a>
                                 <!--end::Menu link-->
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item">
                                 <!--begin::Menu link-->
-                                <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#achievements" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Surat-surat</a>
+                                <a class="menu-link nav-link {{ request()->is('user/surat') ? 'active' : '' }} py-3 px-4 px-xxl-6" href="/user/surat" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Surat-surat</a>
                                 <!--end::Menu link-->
                             </div>
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->
                     </div>
-                </div>
+                </div>             
                 <!--end::Menu wrapper-->
                 <!--begin::Toolbar-->
                 <div class="flex-equal text-end ms-1">

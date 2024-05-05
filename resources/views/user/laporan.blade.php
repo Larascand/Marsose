@@ -8,13 +8,13 @@
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                 <span class="required">Jenis Laporan</span>
-                <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected position">
+                <span class="ms-1" data-bs-toggle="tooltip" title="Your payment statements may very based on selected laporan">
                     <i class="ki-outline ki-information fs-7"></i>
                 </span>
             </label>
             <!--end::Label-->
             <!--begin::Select-->
-            <select name="position" data-control="select2" data-placeholder="Select a position..." class="form-select form-select-solid">
+            <select name="laporan" data-control="select2" data-placeholder="Pilih Jenis Laporan..." class="form-select" style="border: 1px solid;">
                 <option value="Laporan 1">Laporan 1</option>
                 <option value="Laporan 2">Laporan 2</option>
                 <option value="Laporan 3">Laporan 3</option>
@@ -25,7 +25,7 @@
         </div>
         <div class="d-flex flex-column mb-8">
             <label class="fs-6 fw-semibold mb-2">Deskripsi/Keterangan</label>
-            <textarea class="form-control form-control-solid" rows="4" name="application" placeholder=""></textarea>
+            <textarea class="form-control" rows="4" name="application" placeholder="" style="border: 1px solid;"></textarea>
         </div>
     </div>
 </div>
@@ -38,17 +38,19 @@
                     <label class="d-flex align-items-center fs-5 fw-semibold mb-2">
                         <span class="required">Gambar</span>
                     </label>
-                    <input type="file" name="lampiran" class="form-control form-control-solid" />
+                    <div class="input-group">
+                        <input type="file" name="lampiran" class="form-control" style="border: 1px solid;" />
+                    </div>
+                    <div class="form-text">Catatan: Pastikan gambar bukti yang diunggah jelas dan mudah dibaca, tersedia dalam format JPG, PNG, atau GIF.</div>
                 </div>
-            </div>
+            </div>            
         </div>
         <div class="mt-5">
-            <button class="btn" style="background-color: #D97706; color: #fff;">Save</button>
-            <button class="btn" style="background-color: #fff; color: #000;">Cancel</button>
+            <button class="btn me-5" style="background-color: #D97706; color: #fff;">Save</button>
+            <button class="btn" style="background-color: #fff; color: #000; border: 1px solid #D1D5DB;">Cancel</button>
         </div>
     </div>
     
-
     <div class="col-lg-6">
         <div class="card mt-5 h-100" style="background-color: #1E293B;">
             <!--begin::Header-->
@@ -155,6 +157,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

@@ -29,8 +29,9 @@ Route::get('/', [WelcomeController::class, 'index']);
 // });
 
 Route::prefix('user')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('/laporan', [UserController::class, 'laporan'])->name('user.laporan');
+    Route::get('/surat', [UserController::class, 'surat'])->name('user.surat');
 });
 
 Route::prefix('warga')->group(function () {

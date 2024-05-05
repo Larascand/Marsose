@@ -15,4 +15,9 @@ class UserController extends Controller
     {
         return view('user.laporan');
     }
+
+    public function surat()
+    {
+        return view('user.surat');
+    }
 }
