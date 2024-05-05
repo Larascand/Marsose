@@ -19,7 +19,7 @@
 </div>
 
 <!--begin::List Widget 5-->
-<div class="row g-5 mt-5">
+<div class="row g-8 mt-5">
     <div class="col-xl-4">
         <div class="card mt-10 h-100" style="background-color: #1B283F; background-image: url('assets/media/logos/rhone.svg'); background-repeat: no-repeat; background-size: cover;">
             <!--begin::Header-->
@@ -32,14 +32,14 @@
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-5">
-                <button class="btn" style="background-color: #F64E60; color:#fff;">Buat Laporan</button>
+                <button class="btn" style="background-color: #F64E60; color:#fff;"  onclick="window.location.href='/user/laporan'">Buat Laporan</button>
             </div>
             <!--end: Card Body-->
         </div>        
     </div>    
 
     <div class="col-xl-4">
-        <div class="card mt-10 h-100">
+        <div class="card me-2 mt-10 h-100">
             <!--begin::Header-->
             <div class="card-header align-items-center border-0 mt-4">
                 <h3 class="card-title align-items-start flex-column">
@@ -192,29 +192,31 @@
 
     <!--begin::Table-->
     <table class="table mt-4">
-        <thead>
-            <tr style="background-color: #1B283F; color: #fff;" class="rounded">
-                <th scope="col">No</th>
-                <th scope="col">NIK</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Jenis Laporan</th>
-                <th scope="col">Gambar</th>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>John Doe</td>
-                <td>2024-04-29</td>
-                <td>Pencurian di depan rumah</td>
-                <td>gambar.jpg</td>
-                <td>Barang yang dicuri adalah sepeda motor</td>
-                <td>Menunggu Verifikasi</td>
-            </tr>
-        </tbody>
-    </table>
+    <thead>
+        <tr style="background-color: #1B283F; color: #fff;">
+            <th scope="col" style="padding: 10px; border-top-left-radius: 10px;"">No</th>
+            <th scope="col">NIK</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Jenis Laporan</th>
+            <th scope="col">Gambar</th>
+            <th scope="col">Keterangan</th>
+            <th scope="col">Status</th>
+            <th scope="col" style="border-top-right-radius: 10px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row" style="padding: 10px;">1</th>
+            <td>John Doe</td>
+            <td>2024-04-29</td>
+            <td>Pencurian di depan rumah</td>
+            <td>gambar.jpg</td>
+            <td>Barang yang dicuri adalah sepeda motor</td>
+            <td>Menunggu Verifikasi</td>
+        </tr>
+    </tbody>
+</table>
+
     <!--end::Table-->    
 </div>
 @endsection

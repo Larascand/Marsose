@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="landing-header rounded-4" style="background-color: #1E293B;" data-kt-sticky="true" data-kt-sticky-name="landing-header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+<div class="landing-header rounded-4" style="background-color: #1E293B; position: fixed; width: 98.5%; z-index: 1000;">
         <!--begin::Container-->
         <div class="container">
             <!--begin::Wrapper-->
@@ -108,3 +108,4 @@
         <!--end::Container-->
     </div>
 </div>
+<div class="spacer" style="height: 100px;"></div>
