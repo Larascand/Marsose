@@ -2,7 +2,7 @@
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../"/>
-		<title>Marsose</title>
+		<title>@yield('title')</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -13,7 +13,10 @@
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="assets/media/logos/logo-marsose2.svg" />
+		{{-- <link rel="shortcut icon" href="assets/media/logos/logo-marsose2.svg" /> --}}
+
+		<link href="assets/media/logos/marsose.svg" rel="icon">
+
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -25,12 +28,44 @@
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" data-kt-app-aside-enabled="true" data-kt-app-aside-fixed="true" data-kt-app-aside-push-toolbar="true" data-kt-app-aside-push-footer="true" class="app-default">
 		<!--begin::Theme mode setup on page load-->
-		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+		<script>
+			// Mendefinisikan mode tema default dan mode tema saat ini
+			var defaultThemeMode = "light";
+			var themeMode;
+		
+			// Memeriksa apakah elemen root HTML memiliki atribut data-bs-theme-mode
+			if (document.documentElement) {
+				// Jika ya, gunakan nilai dari atribut tersebut sebagai mode tema
+				if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+					themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+				} 
+				// Jika tidak, cek apakah terdapat data tema di localStorage
+				else {
+					if (localStorage.getItem("data-bs-theme") !== null) {
+						themeMode = localStorage.getItem("data-bs-theme");
+					} 
+					// Jika tidak ada, gunakan mode tema default
+					else {
+						themeMode = defaultThemeMode;
+					}
+				}
+		
+				// Jika mode tema adalah "system", gunakan tema sesuai dengan preferensi sistem pengguna
+				if (themeMode === "system") {
+					themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+				}
+		
+				// Tetapkan mode tema yang dipilih ke elemen root HTML
+				document.documentElement.setAttribute("data-bs-theme", themeMode);
+			}
+		</script>		
 		<!--end::Theme mode setup on page load-->
 		<!--begin::App-->
 		<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
@@ -4206,6 +4241,10 @@
 		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
+
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 	<!--end::Body-->
 </html>

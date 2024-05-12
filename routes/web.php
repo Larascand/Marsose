@@ -31,7 +31,8 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
     Route::get('/laporan', [UserController::class, 'laporan'])->name('user.laporan');
-    Route::get('/surat', [UserController::class, 'surat'])->name('user.surat');
+    Route::get('/surat_keterangan', [UserController::class, 'surat_keterangan'])->name('user.surat_keterangan');
+    Route::get('/surat_pengantar', [UserController::class, 'surat_pengantar'])->name('user.surat_pengantar');
 });
 
 Route::prefix('warga')->group(function () {

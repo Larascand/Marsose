@@ -16,8 +16,13 @@ class UserController extends Controller
         return view('user.laporan');
     }
 
-    public function surat()
+    public function surat_keterangan()
     {
-        return view('user.surat');
+        return view('user.surat_keterangan');
+    }
+
+    public function surat_pengantar()
+    {
+        return view('user.surat_pengantar');
     }
 }
