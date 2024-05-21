@@ -10,25 +10,23 @@ class KK extends Model
     use HasFactory;
 
     protected $table = 'kk';
-    protected $primaryKey = 'No_KK';
-    public $timestamps = false;
-    public $incrementing = false;
-
+    protected $primaryKey = 'id_kk';
+    public $timestamps = true;
 
     protected $fillable = [
-        'No_KK',
+        'no_kk',
         'kepala_keluarga',
-        'No_RT',
-        'No_RW',
+        'alamat',
+        'id_rt',
     ];
 
     public function rt()
     {
-        return $this->belongsTo(RT::class, 'No_RT', 'No_RT');
+        return $this->belongsTo(RT::class, 'id_rt');
     }
 
-    public function rw()
+    public function warga()
     {
-        return $this->belongsTo(RW::class, 'No_RW', 'No_RW');
+        return $this->hasMany(Warga::class, 'id_warga');
     }
 }

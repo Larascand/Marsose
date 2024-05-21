@@ -9,20 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('laporan_spk', function (Blueprint $table) {
-            $table->bigIncrements('ID_SPK');
+            $table->bigIncrements('id_spk');
             $table->string('jenis_laporan', 100)->nullable();
             $table->integer('biaya')->nullable();
             $table->integer('dampak')->nullable();
             $table->integer('durasi_pekerjaan')->nullable();
             $table->integer('jumlah_pengaduan')->nullable();
-            $table->string('No_RW', 10)->nullable();
+            $table->unsignedBigInteger('id_warga')->index();
             $table->timestamps();
             
-            // Menambahkan indeks dan foreign key
-            $table->foreign('No_RW')->references('No_RW')->on('data_rw')->onDelete('cascade');
+            $table->foreign('id_warga')
+                  ->references('id_warga')
+                  ->on('warga')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

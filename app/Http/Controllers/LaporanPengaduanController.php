@@ -19,7 +19,7 @@ class LaporanPengaduanController extends Controller
         $activeMenu = 'laporan';
         $laporanP = LaporanPengaduan::all();
 
-        return view('laporan_pengaduan.index', [
+        return view('super-admin.laporan_pengaduan.index', [
             'breadcrumb' => $breadcrumb,
             'laporanP' => $laporanP,
             'activeMenu' => $activeMenu

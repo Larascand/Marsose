@@ -17,13 +17,13 @@
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
                 <a class="menu-link {{ $activeMenu == 'dashboard' ? 'active' : '' }}" href="{{ url('/') }}">
-                    <span class="menu-icon">
+                    {{-- <span class="menu-icon">
                         @if ($activeMenu == 'dashboard')
                             <img alt="Logo" src="assets/media/logos/menu-active/logo-dashboard.svg" class="h-25px theme-light-show" />
                         @else
                             <img alt="Logo" src="assets/media/logos/menu/logo-dashboard.svg" class="h-25px theme-light-show" />
                         @endif
-                    </span>
+                    </span> --}}
                     <span class="menu-title">Dashboard</span>
                 </a>
                 <!-- End: Menu link -->
@@ -34,14 +34,14 @@
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
                 <a class="menu-link {{ $activeMenu == 'level' ? 'active' : '' }}" href="{{ url('/level') }}">
-                    <span class="menu-icon">
-                        @if ($activeMenu == 'laporan')
+                    {{-- <span class="menu-icon">
+                        @if ($activeMenu == 'level')
                             <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
                         @else
                             <img alt="Logo" src="assets/media/logos/menu/logo-laporan.svg" class="h-25px theme-light-show" />
                         @endif
-                    </span>
-                    <span class="menu-title">Laporan</span>
+                    </span> --}}
+                    <span class="menu-title">Level</span>
                 </a>
                 <!-- End: Menu link -->
             </div>
@@ -50,15 +50,15 @@
             <!-- Begin: Menu item -->
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/laporan') }}">
-                    <span class="menu-icon">
-                        @if ($activeMenu == 'laporan')
-                            <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
+                <a class="menu-link {{ $activeMenu == 'datakk' ? 'active' : '' }}" href="{{ url('/datakk') }}">
+                    {{-- <span class="menu-icon">
+                        @if ($activeMenu == 'datakk')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-warga.svg" class="h-25px theme-light-show" />
                         @else
-                            <img alt="Logo" src="assets/media/logos/menu/logo-laporan.svg" class="h-25px theme-light-show" />
+                            <img alt="Logo" src="assets/media/logos/menu/logo-warga.svg" class="h-25px theme-light-show" />
                         @endif
-                    </span>
-                    <span class="menu-title">Laporan</span>
+                    </span> --}}
+                    <span class="menu-title">Data KK</span>
                 </a>
                 <!-- End: Menu link -->
             </div>
@@ -68,13 +68,13 @@
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
                 <a class="menu-link {{ $activeMenu == 'warga' ? 'active' : '' }}" href="{{ url('/warga') }}">
-                    <span class="menu-icon">
+                    {{-- <span class="menu-icon">
                         @if ($activeMenu == 'warga')
                             <img alt="Logo" src="assets/media/logos/menu-active/logo-warga.svg" class="h-25px theme-light-show" />
                         @else
                             <img alt="Logo" src="assets/media/logos/menu/logo-warga.svg" class="h-25px theme-light-show" />
                         @endif
-                    </span>
+                    </span> --}}
                     <span class="menu-title">Data Penduduk</span>
                 </a>
                 <!-- End: Menu link -->
@@ -84,15 +84,32 @@
             <!-- Begin: Menu item -->
             <div class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
-                <a class="menu-link {{ $activeMenu == 'datart' ? 'active' : '' }}" href="{{ url('/rt') }}">
-                    <span class="menu-icon">
+                <a class="menu-link {{ $activeMenu == 'datauser' ? 'active' : '' }}" href="{{ url('/datauser') }}">
+                    {{-- <span class="menu-icon">
+                        @if ($activeMenu == 'datauser')
+                            <img alt="Logo" src="assets/media/logos/menu-active/logo-laporan.svg" class="h-25px theme-light-show" />
+                        @else
+                            <img alt="Logo" src="assets/media/logos/menu/logo-laporan.svg" class="h-25px theme-light-show" />
+                        @endif
+                    </span> --}}
+                    <span class="menu-title">Data User</span>
+                </a>
+                <!-- End: Menu link -->
+            </div>
+            <!-- End: Menu item -->
+
+            <!-- Begin: Menu item -->
+            <div class="menu-item menu-accordion">
+                <!-- Begin: Menu link -->
+                <a class="menu-link {{ $activeMenu == 'laporan' ? 'active' : '' }}" href="{{ url('/laporan') }}">
+                    {{-- <span class="menu-icon">
                         @if ($activeMenu == 'datart')
                             <img alt="Logo" src="assets/media/logos/menu-active/logo-datart.svg" class="h-25px theme-light-show" />
                         @else
                             <img alt="Logo" src="assets/media/logos/menu/logo-datart.svg" class="h-25px theme-light-show" />
                         @endif
-                    </span>
-                    <span class="menu-title">Data RT</span>
+                    </span> --}}
+                    <span class="menu-title">Laporan</span>
                 </a>
                 <!-- End: Menu link -->
             </div>
@@ -102,9 +119,9 @@
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
                 <a class="menu-link" href="../">
-                    <span class="menu-icon">
+                    {{-- <span class="menu-icon">
                         <img alt="Logo" src="assets/media/logos/logo-surat.svg" class="h-25px theme-light-show" />
-                    </span>
+                    </span> --}}
                     <span class="menu-title">Surat-Surat</span>
                 </a>
                 <!-- End: Menu link -->
@@ -115,9 +132,9 @@
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!-- Begin: Menu link -->
                 <a class="menu-link" href="../">
-                    <span class="menu-icon">
+                    {{-- <span class="menu-icon">
                         <img alt="Logo" src="assets/media/logos/logo-spk.svg" class="h-25px theme-light-show" />
-                    </span>
+                    </span> --}}
                     <span class="menu-title">Laporan SPK</span>
                 </a>
                 <!-- End: Menu link -->

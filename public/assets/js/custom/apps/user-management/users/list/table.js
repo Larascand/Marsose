@@ -1,1 +1,866 @@
-"use strict";var KTUsersList=function(){var e,t,n,r,o=document.getElementById("kt_table_users"),c=()=>{o.querySelectorAll('[data-kt-users-table-filter="delete_row"]').forEach((t=>{t.addEventListener("click",(function(t){t.preventDefault();const n=t.target.closest("tr"),r=n.querySelectorAll("td")[1].querySelectorAll("a")[1].innerText;Swal.fire({text:"Are you sure you want to delete "+r+"?",icon:"warning",showCancelButton:!0,buttonsStyling:!1,confirmButtonText:"Yes, delete!",cancelButtonText:"No, cancel",customClass:{confirmButton:"btn fw-bold btn-danger",cancelButton:"btn fw-bold btn-active-light-primary"}}).then((function(t){t.value?Swal.fire({text:"You have deleted "+r+"!.",icon:"success",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn fw-bold btn-primary"}}).then((function(){e.row($(n)).remove().draw()})).then((function(){a()})):"cancel"===t.dismiss&&Swal.fire({text:customerName+" was not deleted.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn fw-bold btn-primary"}})}))}))}))},l=()=>{const c=o.querySelectorAll('[type="checkbox"]');t=document.querySelector('[data-kt-user-table-toolbar="base"]'),n=document.querySelector('[data-kt-user-table-toolbar="selected"]'),r=document.querySelector('[data-kt-user-table-select="selected_count"]');const s=document.querySelector('[data-kt-user-table-select="delete_selected"]');c.forEach((e=>{e.addEventListener("click",(function(){setTimeout((function(){a()}),50)}))})),s.addEventListener("click",(function(){Swal.fire({text:"Are you sure you want to delete selected customers?",icon:"warning",showCancelButton:!0,buttonsStyling:!1,confirmButtonText:"Yes, delete!",cancelButtonText:"No, cancel",customClass:{confirmButton:"btn fw-bold btn-danger",cancelButton:"btn fw-bold btn-active-light-primary"}}).then((function(t){t.value?Swal.fire({text:"You have deleted all selected customers!.",icon:"success",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn fw-bold btn-primary"}}).then((function(){c.forEach((t=>{t.checked&&e.row($(t.closest("tbody tr"))).remove().draw()}));o.querySelectorAll('[type="checkbox"]')[0].checked=!1})).then((function(){a(),l()})):"cancel"===t.dismiss&&Swal.fire({text:"Selected customers was not deleted.",icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn fw-bold btn-primary"}})}))}))};const a=()=>{const e=o.querySelectorAll('tbody [type="checkbox"]');let c=!1,l=0;e.forEach((e=>{e.checked&&(c=!0,l++)})),c?(r.innerHTML=l,t.classList.add("d-none"),n.classList.remove("d-none")):(t.classList.remove("d-none"),n.classList.add("d-none"))};return{init:function(){o&&(o.querySelectorAll("tbody tr").forEach((e=>{const t=e.querySelectorAll("td"),n=t[3].innerText.toLowerCase();let r=0,o="minutes";n.includes("yesterday")?(r=1,o="days"):n.includes("mins")?(r=parseInt(n.replace(/\D/g,"")),o="minutes"):n.includes("hours")?(r=parseInt(n.replace(/\D/g,"")),o="hours"):n.includes("days")?(r=parseInt(n.replace(/\D/g,"")),o="days"):n.includes("weeks")&&(r=parseInt(n.replace(/\D/g,"")),o="weeks");const c=moment().subtract(r,o).format();t[3].setAttribute("data-order",c);const l=moment(t[5].innerHTML,"DD MMM YYYY, LT").format();t[5].setAttribute("data-order",l)})),(e=$(o).DataTable({info:!1,order:[],pageLength:10,lengthChange:!1,columnDefs:[{orderable:!1,targets:0},{orderable:!1,targets:6}]})).on("draw",(function(){l(),c(),a()})),l(),document.querySelector('[data-kt-user-table-filter="search"]').addEventListener("keyup",(function(t){e.search(t.target.value).draw()})),document.querySelector('[data-kt-user-table-filter="reset"]').addEventListener("click",(function(){document.querySelector('[data-kt-user-table-filter="form"]').querySelectorAll("select").forEach((e=>{$(e).val("").trigger("change")})),e.search("").draw()})),c(),(()=>{const t=document.querySelector('[data-kt-user-table-filter="form"]'),n=t.querySelector('[data-kt-user-table-filter="filter"]'),r=t.querySelectorAll("select");n.addEventListener("click",(function(){var t="";r.forEach(((e,n)=>{e.value&&""!==e.value&&(0!==n&&(t+=" "),t+=e.value)})),e.search(t).draw()}))})())}}}();KTUtil.onDOMContentLoaded((function(){KTUsersList.init()}));
+"use strict";
+
+var KTLevelList = function() {
+    var e, t, n, r;
+    var tableElement = document.getElementById("kt_table_level");
+
+    // Fungsi untuk mengelola tindakan penghapusan baris
+    var handleRowDeletion = function() {
+        tableElement.querySelectorAll('[data-kt-level-table-filter="delete_row"]').forEach((button) => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                var row = event.target.closest("tr");
+                var levelName = row.querySelector("td:nth-child(3)").innerText;
+                var id = row.querySelector("td:nth-child(2)").innerText;
+
+                // Membuat dan menampilkan kotak dialog konfirmasi
+                Swal.fire({
+                    text: `Are you sure you want to delete level ${levelName}?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete!",
+                    cancelButtonText: "No, cancel",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan POST untuk menghapus level
+                        var form = document.getElementById(`delete-form-${id}`);
+                        form.submit();
+
+                        // Tampilkan notifikasi sukses jika permintaan berhasil
+                        Swal.fire({
+                            text: `You have deleted level ${levelName}!`,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        }).then(function() {
+                            // Menghapus baris dari DataTable
+                            e.row($(row)).remove().draw();
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Menampilkan notifikasi bahwa penghapusan dibatalkan
+                        Swal.fire({
+                            text: `${levelName} was not deleted.`,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    };
+
+    var handleToolbar = function() {
+        var checkboxes = document.querySelectorAll('#kt_table_level [type="checkbox"]');
+        var t = document.querySelector('[data-kt-level-table-toolbar="base"]');
+        var n = document.querySelector('[data-kt-level-table-toolbar="selected"]');
+        var r = document.querySelector('[data-kt-level-table-select="selected_count"]');
+        var selectedIdInput = document.getElementById('selected-ids');
+        var form = document.getElementById("delete-selected-form");
+        var deleteSelectedButton = document.querySelector('[data-kt-level-table-select="delete_selected"]');
+        var selectAllCheckbox = document.querySelector('[data-kt-check-target="#kt_table_level .form-check-input"]');
+        var selectedIds = [];
+    
+        function updateToolbar() {
+            r.innerText = selectedIds.length;
+            t.classList.toggle("d-none", selectedIds.length > 0);
+            n.classList.toggle("d-none", selectedIds.length === 0);
+        }
+    
+        function updateSelectedIds(checkbox, isChecked) {
+            if (isChecked) {
+                if (!selectedIds.includes(checkbox.value)) {
+                    selectedIds.push(checkbox.value);
+                }
+            } else {
+                selectedIds = selectedIds.filter(id => id !== checkbox.value && id !== 'on');
+            }
+            updateToolbar();
+        }
+    
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", function() {
+                updateSelectedIds(checkbox, checkbox.checked);
+                if (checkbox.checked && checkbox === selectAllCheckbox) {
+                    checkboxes.forEach(cb => cb.checked = checkbox.checked);
+                }
+            });
+        });
+    
+        selectAllCheckbox.addEventListener("change", function() {
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAllCheckbox.checked;
+                updateSelectedIds(checkbox, checkbox.checked);
+            });
+        });
+    
+        deleteSelectedButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (selectedIds.length === 0) {
+                Swal.fire({
+                    text: "No levels were selected for deletion.",
+                    icon: "warning",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-primary"
+                    }
+                });
+                return;
+            }
+            Swal.fire({
+                text: "Are you sure you want to delete selected levels?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    selectedIds = selectedIds.filter(id => id !== 'on');
+                    console.log('selectedIds before form submission:', selectedIds);
+                    selectedIdInput.value = JSON.stringify(selectedIds);
+                    form.submit();
+                    Swal.fire({
+                        text: "You have deleted all selected levels!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary"
+                        }
+                    });
+                }
+            });
+        });
+    };    
+
+    // Fungsi untuk memperbarui toolbar
+    var updateToolbar = function() {
+        var checkboxes = tableElement.querySelectorAll('tbody [type="checkbox"]');
+        var hasSelected = false;
+        var selectedCount = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                hasSelected = true;
+                selectedCount++;
+            }
+        });
+
+        if (hasSelected) {
+            r.innerText = selectedCount;
+            t.classList.add("d-none");
+            n.classList.remove("d-none");
+        } else {
+            t.classList.remove("d-none");
+            n.classList.add("d-none");
+        }
+    };
+
+    // Fungsi untuk menangani pencarian dan reset
+    var handleSearchAndReset = function() {
+        document.querySelector('[data-kt-level-table-filter="search"]').addEventListener("keyup", function(event) {
+            e.search(event.target.value).draw();
+        });
+
+        document.querySelector('[data-kt-level-table-filter="reset"]').addEventListener("click", function() {
+            document.querySelector('[data-kt-level-table-filter="form"]').querySelectorAll("select").forEach((select) => {
+                $(select).val("").trigger("change");
+            });
+            e.search("").draw();
+        });
+    };
+
+    return {
+        init: function() {
+            if (tableElement) {
+                e = $(tableElement).DataTable({
+                    info: false,
+                    order: [],
+                    pageLength: 10,
+                    lengthChange: false,
+                    columnDefs: [
+                        { orderable: false, targets: 0 },
+                        { orderable: false, targets: 4 }
+                    ]
+                }).on("draw", function() {
+                    handleToolbar();
+                    handleRowDeletion();
+                    updateToolbar();
+                });
+
+                handleToolbar();
+                handleRowDeletion();
+                handleSearchAndReset();
+            }
+        }
+    };
+}();
+
+KTUtil.onDOMContentLoaded(function() {
+    KTLevelList.init();
+});
+
+var KTkksList = function() {
+    var e, t, n, r;
+    var tableElement = document.getElementById("kt_table_user");
+
+    // Fungsi untuk mengelola tindakan penghapusan baris
+    var handleRowDeletion = function() {
+        tableElement.querySelectorAll('[data-kt-user-table-filter="delete_row"]').forEach((button) => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                var row = event.target.closest("tr");
+                var userName = row.querySelector("td:nth-child(3)").innerText;
+                var id = row.querySelector("td:nth-child(2)").innerText;
+
+                // Membuat dan menampilkan kotak dialog konfirmasi
+                Swal.fire({
+                    text: `Are you sure you want to delete user ${userName}?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete!",
+                    cancelButtonText: "No, cancel",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan POST untuk menghapus user
+                        var form = document.getElementById(`delete-form-${id}`);
+                        form.submit();
+
+                        // Tampilkan notifikasi sukses jika permintaan berhasil
+                        Swal.fire({
+                            text: `You have deleted user ${userName}!`,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        }).then(function() {
+                            // Menghapus baris dari DataTable
+                            e.row($(row)).remove().draw();
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Menampilkan notifikasi bahwa penghapusan dibatalkan
+                        Swal.fire({
+                            text: `${userName} was not deleted.`,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    };
+
+    var handleToolbar = function() {
+        var checkboxes = document.querySelectorAll('#kt_table_user [type="checkbox"]');
+        var t = document.querySelector('[data-kt-user-table-toolbar="base"]');
+        var n = document.querySelector('[data-kt-user-table-toolbar="selected"]');
+        var r = document.querySelector('[data-kt-user-table-select="selected_count"]');
+        var selectedIdInput = document.getElementById('selected-ids');
+        var form = document.getElementById("delete-selected-form");
+        var deleteSelectedButton = document.querySelector('[data-kt-user-table-select="delete_selected"]');
+        var selectAllCheckbox = document.querySelector('[data-kt-check-target="#kt_table_user .form-check-input"]');
+        var selectedIds = [];
+    
+        function updateToolbar() {
+            r.innerText = selectedIds.length;
+            t.classList.toggle("d-none", selectedIds.length > 0);
+            n.classList.toggle("d-none", selectedIds.length === 0);
+        }
+    
+        function updateSelectedIds(checkbox, isChecked) {
+            if (isChecked) {
+                if (!selectedIds.includes(checkbox.value)) {
+                    selectedIds.push(checkbox.value);
+                }
+            } else {
+                selectedIds = selectedIds.filter(id => id !== checkbox.value && id !== 'on');
+            }
+            updateToolbar();
+        }
+    
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", function() {
+                updateSelectedIds(checkbox, checkbox.checked);
+                if (checkbox.checked && checkbox === selectAllCheckbox) {
+                    checkboxes.forEach(cb => cb.checked = checkbox.checked);
+                }
+            });
+        });
+    
+        selectAllCheckbox.addEventListener("change", function() {
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAllCheckbox.checked;
+                updateSelectedIds(checkbox, checkbox.checked);
+            });
+        });
+    
+        deleteSelectedButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (selectedIds.length === 0) {
+                Swal.fire({
+                    text: "No users were selected for deletion.",
+                    icon: "warning",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-primary"
+                    }
+                });
+                return;
+            }
+            Swal.fire({
+                text: "Are you sure you want to delete selected users?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    selectedIds = selectedIds.filter(id => id !== 'on');
+                    console.log('selectedIds before form submission:', selectedIds);
+                    selectedIdInput.value = JSON.stringify(selectedIds);
+                    form.submit();
+                    Swal.fire({
+                        text: "You have deleted all selected users!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary"
+                        }
+                    });
+                }
+            });
+        });
+    };    
+
+    // Fungsi untuk memperbarui toolbar
+    var updateToolbar = function() {
+        var checkboxes = tableElement.querySelectorAll('tbody [type="checkbox"]');
+        var hasSelected = false;
+        var selectedCount = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                hasSelected = true;
+                selectedCount++;
+            }
+        });
+
+        if (hasSelected) {
+            r.innerText = selectedCount;
+            t.classList.add("d-none");
+            n.classList.remove("d-none");
+        } else {
+            t.classList.remove("d-none");
+            n.classList.add("d-none");
+        }
+    };
+
+    // Fungsi untuk menangani pencarian dan reset
+    var handleSearchAndReset = function() {
+        document.querySelector('[data-kt-user-table-filter="search"]').addEventListener("keyup", function(event) {
+            e.search(event.target.value).draw();
+        });
+
+        document.querySelector('[data-kt-user-table-filter="reset"]').addEventListener("click", function() {
+            document.querySelector('[data-kt-user-table-filter="form"]').querySelectorAll("select").forEach((select) => {
+                $(select).val("").trigger("change");
+            });
+            e.search("").draw();
+        });
+    };
+
+    return {
+        init: function() {
+            if (tableElement) {
+                e = $(tableElement).DataTable({
+                    info: false,
+                    order: [],
+                    pageLength: 10,
+                    lengthChange: false,
+                    columnDefs: [
+                        { orderable: false, targets: 0 },
+                        { orderable: false, targets: 4 }
+                    ]
+                }).on("draw", function() {
+                    handleToolbar();
+                    handleRowDeletion();
+                    updateToolbar();
+                });
+
+                handleToolbar();
+                handleRowDeletion();
+                handleSearchAndReset();
+            }
+        }
+    };
+}();
+
+KTUtil.onDOMContentLoaded(function() {
+    KTUsersList.init();
+});
+
+var KTWargaList = function() {
+    var e, t, n, r;
+    var tableElement = document.getElementById("kt_table_warga");
+
+    // Fungsi untuk mengelola tindakan penghapusan baris
+    var handleRowDeletion = function() {
+        tableElement.querySelectorAll('[data-kt-warga-table-filter="delete_row"]').forEach((button) => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                var row = event.target.closest("tr");
+                var userName = row.querySelector("td:nth-child(3)").innerText;
+                var id = row.querySelector("td:nth-child(2)").innerText;
+
+                // Membuat dan menampilkan kotak dialog konfirmasi
+                Swal.fire({
+                    text: `Are you sure you want to delete user ${userName}?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete!",
+                    cancelButtonText: "No, cancel",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan POST untuk menghapus user
+                        var form = document.getElementById(`delete-form-${id}`);
+                        form.submit();
+
+                        // Tampilkan notifikasi sukses jika permintaan berhasil
+                        Swal.fire({
+                            text: `You have deleted user ${userName}!`,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        }).then(function() {
+                            // Menghapus baris dari DataTable
+                            e.row($(row)).remove().draw();
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Menampilkan notifikasi bahwa penghapusan dibatalkan
+                        Swal.fire({
+                            text: `${userName} was not deleted.`,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    };
+
+    var handleToolbar = function() {
+        var checkboxes = document.querySelectorAll('#kt_table_warga [type="checkbox"]');
+        var t = document.querySelector('[data-kt-warga-table-toolbar="base"]');
+        var n = document.querySelector('[data-kt-warga-table-toolbar="selected"]');
+        var r = document.querySelector('[data-kt-warga-table-select="selected_count"]');
+        var selectedIdInput = document.getElementById('selected-ids');
+        var form = document.getElementById("delete-selected-form");
+        var deleteSelectedButton = document.querySelector('[data-kt-warga-table-select="delete_selected"]');
+        var selectAllCheckbox = document.querySelector('[data-kt-check-target="#kt_table_warga .form-check-input"]');
+        var selectedIds = [];
+    
+        function updateToolbar() {
+            r.innerText = selectedIds.length;
+            t.classList.toggle("d-none", selectedIds.length > 0);
+            n.classList.toggle("d-none", selectedIds.length === 0);
+        }
+    
+        function updateSelectedIds(checkbox, isChecked) {
+            if (isChecked) {
+                if (!selectedIds.includes(checkbox.value)) {
+                    selectedIds.push(checkbox.value);
+                }
+            } else {
+                selectedIds = selectedIds.filter(id => id !== checkbox.value && id !== 'on');
+            }
+            updateToolbar();
+        }
+    
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", function() {
+                updateSelectedIds(checkbox, checkbox.checked);
+                if (checkbox.checked && checkbox === selectAllCheckbox) {
+                    checkboxes.forEach(cb => cb.checked = checkbox.checked);
+                }
+            });
+        });
+    
+        selectAllCheckbox.addEventListener("change", function() {
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAllCheckbox.checked;
+                updateSelectedIds(checkbox, checkbox.checked);
+            });
+        });
+    
+        deleteSelectedButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (selectedIds.length === 0) {
+                Swal.fire({
+                    text: "No users were selected for deletion.",
+                    icon: "warning",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-primary"
+                    }
+                });
+                return;
+            }
+            Swal.fire({
+                text: "Are you sure you want to delete selected users?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    selectedIds = selectedIds.filter(id => id !== 'on');
+                    console.log('selectedIds before form submission:', selectedIds);
+                    selectedIdInput.value = JSON.stringify(selectedIds);
+                    form.submit();
+                    Swal.fire({
+                        text: "You have deleted all selected users!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary"
+                        }
+                    });
+                }
+            });
+        });
+    };    
+
+    // Fungsi untuk memperbarui toolbar
+    var updateToolbar = function() {
+        var checkboxes = tableElement.querySelectorAll('tbody [type="checkbox"]');
+        var hasSelected = false;
+        var selectedCount = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                hasSelected = true;
+                selectedCount++;
+            }
+        });
+
+        if (hasSelected) {
+            r.innerText = selectedCount;
+            t.classList.add("d-none");
+            n.classList.remove("d-none");
+        } else {
+            t.classList.remove("d-none");
+            n.classList.add("d-none");
+        }
+    };
+
+    // Fungsi untuk menangani pencarian dan reset
+    var handleSearchAndReset = function() {
+        document.querySelector('[data-kt-warga-table-filter="search"]').addEventListener("keyup", function(event) {
+            e.search(event.target.value).draw();
+        });
+
+        document.querySelector('[data-kt-warga-table-filter="reset"]').addEventListener("click", function() {
+            document.querySelector('[data-kt-warga-table-filter="form"]').querySelectorAll("select").forEach((select) => {
+                $(select).val("").trigger("change");
+            });
+            e.search("").draw();
+        });
+    };
+
+    return {
+        init: function() {
+            if (tableElement) {
+                e = $(tableElement).DataTable({
+                    info: false,
+                    order: [],
+                    pageLength: 10,
+                    lengthChange: false,
+                    columnDefs: [
+                        { orderable: false, targets: 0 },
+                        { orderable: false, targets: 4 }
+                    ]
+                }).on("draw", function() {
+                    handleToolbar();
+                    handleRowDeletion();
+                    updateToolbar();
+                });
+
+                handleToolbar();
+                handleRowDeletion();
+                handleSearchAndReset();
+            }
+        }
+    };
+}();
+
+KTUtil.onDOMContentLoaded(function() {
+    KTWargaList.init();
+});
+
+var KTKKList = function() {
+    var e, t, n, r;
+    var tableElement = document.getElementById("kt_table_kk");
+
+    // Fungsi untuk mengelola tindakan penghapusan baris
+    var handleRowDeletion = function() {
+        tableElement.querySelectorAll('[data-kt-kk-table-filter="delete_row"]').forEach((button) => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                var row = event.target.closest("tr");
+                var userName = row.querySelector("td:nth-child(3)").innerText;
+                var id = row.querySelector("td:nth-child(2)").innerText;
+
+                // Membuat dan menampilkan kotak dialog konfirmasi
+                Swal.fire({
+                    text: `Are you sure you want to delete user ${userName}?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete!",
+                    cancelButtonText: "No, cancel",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan POST untuk menghapus user
+                        var form = document.getElementById(`delete-form-${id}`);
+                        form.submit();
+
+                        // Tampilkan notifikasi sukses jika permintaan berhasil
+                        Swal.fire({
+                            text: `You have deleted user ${userName}!`,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        }).then(function() {
+                            // Menghapus baris dari DataTable
+                            e.row($(row)).remove().draw();
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Menampilkan notifikasi bahwa penghapusan dibatalkan
+                        Swal.fire({
+                            text: `${userName} was not deleted.`,
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    };
+
+    var handleToolbar = function() {
+        var checkboxes = document.querySelectorAll('#kt_table_kk [type="checkbox"]');
+        var t = document.querySelector('[data-kt-kk-table-toolbar="base"]');
+        var n = document.querySelector('[data-kt-kk-table-toolbar="selected"]');
+        var r = document.querySelector('[data-kt-kk-table-select="selected_count"]');
+        var selectedIdInput = document.getElementById('selected-ids');
+        var form = document.getElementById("delete-selected-form");
+        var deleteSelectedButton = document.querySelector('[data-kt-kk-table-select="delete_selected"]');
+        var selectAllCheckbox = document.querySelector('[data-kt-check-target="#kt_table_kk .form-check-input"]');
+        var selectedIds = [];
+    
+        function updateToolbar() {
+            r.innerText = selectedIds.length;
+            t.classList.toggle("d-none", selectedIds.length > 0);
+            n.classList.toggle("d-none", selectedIds.length === 0);
+        }
+    
+        function updateSelectedIds(checkbox, isChecked) {
+            if (isChecked) {
+                if (!selectedIds.includes(checkbox.value)) {
+                    selectedIds.push(checkbox.value);
+                }
+            } else {
+                selectedIds = selectedIds.filter(id => id !== checkbox.value && id !== 'on');
+            }
+            updateToolbar();
+        }
+    
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", function() {
+                updateSelectedIds(checkbox, checkbox.checked);
+                if (checkbox.checked && checkbox === selectAllCheckbox) {
+                    checkboxes.forEach(cb => cb.checked = checkbox.checked);
+                }
+            });
+        });
+    
+        selectAllCheckbox.addEventListener("change", function() {
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAllCheckbox.checked;
+                updateSelectedIds(checkbox, checkbox.checked);
+            });
+        });
+    
+        deleteSelectedButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (selectedIds.length === 0) {
+                Swal.fire({
+                    text: "No users were selected for deletion.",
+                    icon: "warning",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-primary"
+                    }
+                });
+                return;
+            }
+            Swal.fire({
+                text: "Are you sure you want to delete selected users?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    selectedIds = selectedIds.filter(id => id !== 'on');
+                    console.log('selectedIds before form submission:', selectedIds);
+                    selectedIdInput.value = JSON.stringify(selectedIds);
+                    form.submit();
+                    Swal.fire({
+                        text: "You have deleted all selected users!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary"
+                        }
+                    });
+                }
+            });
+        });
+    };    
+
+    // Fungsi untuk memperbarui toolbar
+    var updateToolbar = function() {
+        var checkboxes = tableElement.querySelectorAll('tbody [type="checkbox"]');
+        var hasSelected = false;
+        var selectedCount = 0;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                hasSelected = true;
+                selectedCount++;
+            }
+        });
+
+        if (hasSelected) {
+            r.innerText = selectedCount;
+            t.classList.add("d-none");
+            n.classList.remove("d-none");
+        } else {
+            t.classList.remove("d-none");
+            n.classList.add("d-none");
+        }
+    };
+
+    // Fungsi untuk menangani pencarian dan reset
+    var handleSearchAndReset = function() {
+        document.querySelector('[data-kt-kk-table-filter="search"]').addEventListener("keyup", function(event) {
+            e.search(event.target.value).draw();
+        });
+
+        document.querySelector('[data-kt-kk-table-filter="reset"]').addEventListener("click", function() {
+            document.querySelector('[data-kt-kk-table-filter="form"]').querySelectorAll("select").forEach((select) => {
+                $(select).val("").trigger("change");
+            });
+            e.search("").draw();
+        });
+    };
+
+    return {
+        init: function() {
+            if (tableElement) {
+                e = $(tableElement).DataTable({
+                    info: false,
+                    order: [],
+                    pageLength: 10,
+                    lengthChange: false,
+                    columnDefs: [
+                        { orderable: false, targets: 0 },
+                        { orderable: false, targets: 4 },
+                        { orderable: false, targets: 7 }
+                    ]
+                }).on("draw", function() {
+                    handleToolbar();
+                    handleRowDeletion();
+                    updateToolbar();
+                });
+
+                handleToolbar();
+                handleRowDeletion();
+                handleSearchAndReset();
+            }
+        }
+    };
+}();
+
+KTUtil.onDOMContentLoaded(function() {
+    KTKKList.init();
+});

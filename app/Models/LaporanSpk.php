@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LaporanPengaduan extends Model
+class LaporanSpk extends Model
 {
     use HasFactory;
 
-    protected $table = 'laporan_pengaduan';
-    protected $primaryKey = 'id_laporan';
+    protected $table = 'laporan_spk';
+    protected $primaryKey = 'id_spk';
     public $timestamps = true;
 
     protected $fillable = [
-        'tanggal_laporan',
         'jenis_laporan',
-        'gambar',
-        'keterangan',
-        'status',
+        'biaya',
+        'dampak',
+        'durasi_pekerjaan',
+        'jumlah_pengadua=',
         'id_warga',
     ];
 }

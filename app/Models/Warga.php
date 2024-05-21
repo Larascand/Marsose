@@ -8,19 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Warga extends Model
 {
     use HasFactory;
+
     protected $table = 'warga';
-    protected $primaryKey = 'NIK';
+    protected $primaryKey = 'id_warga';
+    public $timestamps = true;
+
     protected $fillable = [
-        'NIK',
-        'username',
-        'password',
+        'nik',
         'nama',
-        'alamat',
         'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
         'agama',
-        'no_telp',
-        'No_KK',
+        'alamat',
+        'periode_jabatan_awal',
+        'periode_jabatan_akhir',
+        'id_user',
+        'id_kk',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(Users::class, 'id_user');
+    }
+
+    public function kk()
+    {
+        return $this->belongsTo(KK::class, 'id_kk');
+    }
 }

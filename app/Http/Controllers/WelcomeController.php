@@ -15,7 +15,7 @@ class WelcomeController extends Controller
 
         $activeMenu = 'dashboard';
 
-        return view('welcome', [
+        return view('super-admin.welcome', [
             'breadcrumb' => $breadcrumb,
             'activeMenu' => $activeMenu
         ]);

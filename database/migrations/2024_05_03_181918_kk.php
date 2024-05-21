@@ -9,16 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('kk', function (Blueprint $table) {
-            $table->string('No_KK', 20)->primary();
+            $table->id('id_kk');
+            $table->char('no_kk', 16)->unique();
             $table->string('kepala_keluarga', 100)->nullable();
-            $table->string('No_RT', 10)->nullable();
-            $table->string('No_RW', 10)->nullable();
+            $table->text('alamat')->nullable();
+            $table->unsignedBigInteger('id_rt')->index;
+            $table->timestamps();
 
-            $table->foreign('No_RT')->references('No_RT')->on('data_rt')->onDelete('set null');
-            $table->foreign('No_RW')->references('No_RW')->on('data_rw')->onDelete('set null');
+            $table->foreign('id_rt')
+                  ->references('id_rt')
+                  ->on('rt')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 
